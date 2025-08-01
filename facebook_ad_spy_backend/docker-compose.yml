@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=your-secret-key-change-in-production
+    volumes:
+      - ./src/database:/app/src/database
+    restart: unless-stopped
+    
+  # Optional: Add PostgreSQL for production
+  # db:
+  #   image: postgres:15
+  #   environment:
+  #     POSTGRES_DB: facebook_ads
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+
+# volumes:
+#   postgres_data:
+
