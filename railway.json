@@ -1,13 +1,10 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "cd facebook-ad-spy-frontend && npm install && npm run build && cp -r dist/* ../facebook_ad_spy_backend/src/static/",
-    "nixpacks": {
-      "environment": {
-        "NODE_JS_VERSION": "18",
-        "NODE_MODULES_CACHE": "true"
-      }
-    }
+    "buildpacks": [
+      "nixpacks/buildpacks/node"
+    ],
+    "buildCommand": "cd facebook-ad-spy-frontend && npm install && npm run build && cp -r dist/* ../facebook_ad_spy_backend/src/static/"
   },
   "deploy": {
     "startCommand": "cd facebook_ad_spy_backend && python src/main.py",
